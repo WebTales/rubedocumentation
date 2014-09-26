@@ -1,0 +1,4 @@
+rubedocumentation
+=================
+
+Rubedo documentation
