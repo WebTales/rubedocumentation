@@ -8,7 +8,7 @@ use RubedoAPI\Rest\V1\AbstractResource;
 /**
  * Class DocsResource
  * @package RubedoDoc\Rest\V1
- * @method \RubedoDoc\Collection\Documentation getDocumentationCollection() Return Documentation collection
+ * @method \RubedoDoc\Collection\Documentation getDocumentationAPICollection() Return Documentation collection
  */
 class DocsResource extends AbstractResource {
     function __construct()
@@ -19,7 +19,7 @@ class DocsResource extends AbstractResource {
 
     public function getAction($params)
     {
-        $this->getDocumentationCollection()->getList();
+        $documentationList = $this->getDocumentationAPICollection()->getList()['data'];
         $docs = array();
         $namespacesToSearch = array();
         foreach ($this->getContext()->getServiceLocator()->get('ModuleManager')->getLoadedModules() as $module) {
@@ -27,11 +27,11 @@ class DocsResource extends AbstractResource {
             $namespacesToSearch = array_merge($namespacesToSearch, isset($moduleConfig['namespaces_api'])?$moduleConfig['namespaces_api']:array());
         }
 
-        foreach($params['url'] as $url) {
+        foreach($documentationList as $docEntry) {
             $doc = array(
-                'url' => $url,
+                'url' => $docEntry['url'],
             );
-            list($version, $route) = $this->splitAndSanitizeURL($url);
+            list($version, $route) = $this->splitAndSanitizeURL($docEntry['url']);
             $resourceArray = array('Rest', $version);
             $class = ucfirst(array_pop($route)) . 'Resource';
             if (!empty($route)) {
@@ -51,10 +51,24 @@ class DocsResource extends AbstractResource {
             }
             $options = $resourceObject->optionsAction();
             if (!empty($options['name'])) {
+                if (!empty($docEntry['codeExamples'])) {
+                    foreach ($options['verbs'] as $verb => &$verbData) {
+                        if (isset($docEntry['codeExamples'][strtolower($verb)])) {
+                            $verbData['codeExamples'] = $docEntry['codeExamples'][strtolower($verb)];
+                        }
+                    }
+                }
                 $doc['options'] = $options;
             }
             $optionsEntity = $resourceObject->optionsEntityAction();
             if (!empty($optionsEntity['name'])) {
+                if (!empty($docEntry['codeExamplesEntity'])) {
+                    foreach ($optionsEntity['verbs'] as $verb => &$verbData) {
+                        if (isset($docEntry['codeExamplesEntity'][strtolower($verb)])) {
+                            $verbData['codeExamples'] = $docEntry['codeExamplesEntity'][strtolower($verb)];
+                        }
+                    }
+                }
                 $doc['optionsEntity'] = $optionsEntity;
             }
             $docs[] = $doc;
@@ -83,14 +97,6 @@ class DocsResource extends AbstractResource {
             ->editVerb('get', function(VerbDefinitionEntity &$entity) {
                 $entity
                     ->setDescription('Get full documentation')
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('List of ')
-                            ->setKey('url')
-                            ->setFilter('string')
-                            ->setMultivalued()
-                            ->setRequired()
-                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Documentation entries')
