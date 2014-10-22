@@ -11,6 +11,26 @@ return array(
             'API\\Collection\\Documentation' => 'RubedoDoc\\Collection\\Documentation',
         ),
     ),
+    'blocksDefinition' => array(
+        'docApi' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/docApi.json'
+        )
+    ),
+    'templates' => array(
+        'themes' => array(
+            'docapi' => array(
+                'label' => 'Documentation Api',
+                'basePath' => realpath(__DIR__ . '/../theme/docApi'),
+                'css' => array(
+                    '/css/docApi.css',
+                ),
+                'js' => array(
+                    '/js/docApi.js',
+                ),
+            ),
+        ),
+    ),
     'router' => array (
         'routes' => array(
             'rubedo-documentation' => array(

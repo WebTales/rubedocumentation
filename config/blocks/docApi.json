@@ -1,0 +1,23 @@
+{
+    "type":"Documentation Api",
+    "description":"Documentation api block",
+    "configBasique":{
+        "title":"Documentation Api",
+        "bType":"docApi",
+        "flex":1,
+        "champsConfig":{
+            "simple":[
+
+            ],
+            "avance":[
+
+            ]
+        },
+        "configBloc":[
+
+        ]
+    },
+    "category":"Documentation",
+    "bType":"docApi",
+    "id":"5447b04403b126340e00002b"
+}
