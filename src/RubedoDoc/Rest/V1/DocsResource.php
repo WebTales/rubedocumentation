@@ -5,6 +5,11 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use RubedoAPI\Rest\V1\AbstractResource;
 
+/**
+ * Class DocsResource
+ * @package RubedoDoc\Rest\V1
+ * @method \RubedoDoc\Collection\Documentation getDocumentationCollection() Return Documentation collection
+ */
 class DocsResource extends AbstractResource {
     function __construct()
     {
@@ -14,6 +19,7 @@ class DocsResource extends AbstractResource {
 
     public function getAction($params)
     {
+        $this->getDocumentationCollection()->getList();
         $docs = array();
         $namespacesToSearch = array();
         foreach ($this->getContext()->getServiceLocator()->get('ModuleManager')->getLoadedModules() as $module) {
