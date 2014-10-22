@@ -8,7 +8,7 @@ return array(
             'RubedoDoc\\Collection\\Documentation' => 'RubedoDoc\\Collection\\Documentation',
         ),
         'aliases' => array(
-            'API\\Collection\\Documentation' => 'RubedoAPI\\Collection\\UserTokens',
+            'API\\Collection\\Documentation' => 'RubedoDoc\\Collection\\Documentation',
         ),
     ),
     'router' => array (
