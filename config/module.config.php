@@ -17,18 +17,11 @@ return array(
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/docApi.json'
         )
     ),
-    'templates' => array(
-        'themes' => array(
-            'docapi' => array(
-                'label' => 'Documentation Api',
-                'basePath' => realpath(__DIR__ . '/../theme/docApi'),
-                'css' => array(
-                    '/css/docApi.css',
-                ),
-                'js' => array(
-                    '/js/docApi.js',
-                ),
-            ),
+    'extension_paths' => array(
+        'rubedocumentation' => array(
+            'path' => realpath(__DIR__ . '/../theme/docApi'),
+            'css' => array('css/docApi.css'),
+            'js' => array('js/docApi.js'),
         ),
     ),
     'router' => array (
