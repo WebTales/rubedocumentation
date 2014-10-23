@@ -1,5 +1,60 @@
 <div ng-controller="DocApiController as docApiCtrl">
-    <div ng-repeat="route in docApiCtrl.routes">
-        <h4>{{route.url}}</h4>
+    <div class="doc" ng-repeat="(docKey, doc) in docApiCtrl.routes">
+        <h3>{{doc.url}}</h3>
+        <div ng-repeat="(routeKey, route) in doc.routes">
+            <div class="row" ng-repeat="verb in route.details.verbs">
+                <div class="headerVerb" ng-click="docApiCtrl.showDetails(docKey, routeKey, verb.verb)">
+                    <span class="col-md-1 verb">{{verb.verb}}</span>
+                    <div class="col-md-11 description">
+                        <span>{{route.url}}</span><span class="pull-right">{{verb.description}}</span>
+                    </div>
+                </div>
+                <div ng-show="verb.showDetails" class="col-md-12 details">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li ng-class="{'active': !verb.showExamples}" ng-click="docApiCtrl.showExamples(docKey, routeKey, verb.verb, false)"><a href>Details</a></li>
+                        <li ng-class="{'active': verb.showExamples}" ng-click="docApiCtrl.showExamples(docKey, routeKey, verb.verb, true)"><a href>Code Examples</a></li>
+                    </ul>
+                    <div ng-hide="verb.showExamples">
+                        <p>
+                        <h4>Input parameters :</h4>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Key</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr ng-repeat="(inputKey, inputValue) in verb.input">
+                                <td>{{inputKey}}</td>
+                                <td ng-if="inputValue.filter">{{inputValue.filter}}</td>
+                                <td ng-if="!inputValue.filter">Undefined</td>
+                                <td>{{inputValue.description}}</td>
+                            </tr>
+                        </table>
+                        </p>
+                        <p>
+                        <h4>Output parameters :</h4>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Key</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr ng-repeat="(inputKey, inputValue) in verb.output">
+                                <td>{{inputKey}}</td>
+                                <td ng-if="inputValue.filter">{{inputValue.filter}}</td>
+                                <td ng-if="!inputValue.filter">Undefined</td>
+                                <td>{{inputValue.description}}</td>
+                            </tr>
+                        </table>
+                        </p>
+                    </div>
+                    <div ng-show="verb.showExamples">
+                        <p ng-repeat="code in verb.codeExamples">
+                            <code>{{code}}</code>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

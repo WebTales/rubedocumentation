@@ -1,0 +1,26 @@
+.doc .row {
+    margin-bottom: 10px;
+}
+
+.headerVerb {
+    cursor: pointer;
+}
+
+.verb, .description {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.verb {
+    background-color: #163E6D;
+    color: #ffffff;
+}
+
+.description {
+    background-color: #c6eEfD;
+}
+
+.details {
+    border: 1px solid #163E6D;
+    padding-top: 10px;
+}
