@@ -19,7 +19,7 @@ return array(
     ),
     'extension_paths' => array(
         'rubedocumentation' => array(
-            'path' => realpath(__DIR__ . '/../theme/docApi'),
+            'path' => realpath(__DIR__ . '/../block/docApi'),
             'css' => array('css/docApi.css'),
             'js' => array('js/docApi.js'),
         ),
