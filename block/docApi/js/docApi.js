@@ -1,4 +1,5 @@
 blocksConfig.docApi={
-    "template": "/templates/blocks/docApi.html",
-    "internalDependencies":["/src/modules/rubedoBlocks/controllers/DocApiController.js"]
+    "template": "/extension-path/rubedocumentation/templates/blocks/docApi.html",
+    "internalDependencies":["/extension-path/rubedocumentation/src/modules/rubedoBlocks/controllers/DocApiController.js"],
+    "absoluteUrl": true
 };
