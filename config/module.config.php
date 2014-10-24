@@ -9,6 +9,7 @@ return array(
         ),
         'aliases' => array(
             'API\\Collection\\Documentation' => 'RubedoDoc\\Collection\\Documentation',
+            'Documentation' => 'RubedoDoc\\Collection\\Documentation',
         ),
     ),
     'blocksDefinition' => array(
@@ -27,16 +28,32 @@ return array(
     'router' => array (
         'routes' => array(
             'rubedo-documentation' => array(
-                'type' => 'Segment',
+                'type' => 'Literal',
                 'options' => array(
-                    'route' => '/backoffice/rubedo-documentation[/:action]',
+                    'route' => '/backoffice/rubedo-documentation',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'RubedoDoc\\Backoffice\\Controller\\Documentation',
-                        'controller' => 'rubedo-documentation',
+                        '__NAMESPACE__' => 'RubedoDoc\\Backoffice\\Controller',
+                        'controller' => 'documentation',
                         'action' => 'index'
                     ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:action]',
+                            '__NAMESPACE__' => 'RubedoDoc\\Backoffice\\Controller',
+                            'constraints' => array(
+                                'controller' => 'documentation',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                            ),
+                            'defaults' => array()
+                        )
+                    )
                 )
-            )
+            ),
+
         ),
     ),
     'controllers' => array(
