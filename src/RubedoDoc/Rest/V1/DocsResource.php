@@ -84,6 +84,8 @@ class DocsResource extends AbstractResource {
         foreach($explodedUrl as $i => $segment) {
             if (empty($segment) || in_array($segment, array('/', 'api'))) {
                 unset($explodedUrl[$i]);
+            } else {
+                $explodedUrl[$i] = ucfirst($explodedUrl[$i]);
             }
         }
         return array(mb_strtoupper(array_shift($explodedUrl)), $explodedUrl);
