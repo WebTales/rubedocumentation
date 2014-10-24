@@ -3,6 +3,12 @@ return array(
     'namespaces_api' => array(
         'RubedoDoc',
     ),
+    'appExtension' => array(
+        'rubedodocumentation' => array(
+            'basePath' => realpath(__DIR__ . '/../app-extension') . '/rubedodocumentation',
+            'definitionFile' => realpath(__DIR__ . '/../app-extension') . '/rubedodocumentation.json'
+        )
+    ),
     'service_manager' => array(
         'invokables' => array(
             'RubedoDoc\\Collection\\Documentation' => 'RubedoDoc\\Collection\\Documentation',

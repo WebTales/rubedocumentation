@@ -1,0 +1,15 @@
+{
+    "extensionName": "rubedodocumentation",
+    "models":["ApiDoc"],
+    "stores":["ApiDocs","CodeExamples"],
+    "views":["AddApiCodexampleWindow","AddApiEndpointWindow","ApiDocsInterface"],
+    "launchButtons":{
+        "studio":[{
+            "favoriteIcon": "processes.png",
+            "itemId": "ApiDocsInterface",
+            "iconCls": "process-icon",
+            "text": "API docs"
+        }],
+        "administration":[]
+    }
+}
