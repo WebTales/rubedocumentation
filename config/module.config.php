@@ -27,8 +27,9 @@ return array(
     'extension_paths' => array(
         'rubedocumentation' => array(
             'path' => realpath(__DIR__ . '/../block/docApi'),
-            'css' => array('css/docApi.css'),
-            'js' => array('js/docApi.js'),
+            'css' => array('css/docApi.css','//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css'),
+            'js' => array('js/docApi.js','//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js'),
+            'angularModules' => array('hljs' => '//pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js')
         ),
     ),
     'router' => array (
