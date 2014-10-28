@@ -24,7 +24,10 @@
                                 <th>Description</th>
                             </tr>
                             <tr ng-repeat="(inputKey, inputValue) in verb.input">
-                                <td>{{inputKey}}</td>
+                                <td>{{inputKey}}<span ng-repeat="option in inputValue.options">
+                                    <span ng-if="option == 'required'">*</span>
+                                    <span ng-if="option == 'multivalued'">+</span>
+                                </span></td>
                                 <td ng-if="inputValue.filter">{{inputValue.filter}}</td>
                                 <td ng-if="!inputValue.filter">Undefined</td>
                                 <td>{{inputValue.description}}</td>
@@ -40,7 +43,10 @@
                                 <th>Description</th>
                             </tr>
                             <tr ng-repeat="(inputKey, inputValue) in verb.output">
-                                <td>{{inputKey}}</td>
+                                <td>{{inputKey}}<span ng-repeat="option in inputValue.options">
+                                    <span ng-if="option == 'required'">*</span>
+                                    <span ng-if="option == 'multivalued'">+</span>
+                                </span></td>
                                 <td ng-if="inputValue.filter">{{inputValue.filter}}</td>
                                 <td ng-if="!inputValue.filter">Undefined</td>
                                 <td>{{inputValue.description}}</td>
